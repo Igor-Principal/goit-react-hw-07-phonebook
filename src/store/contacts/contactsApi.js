@@ -17,6 +17,7 @@ export const contactsApi = createApi({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['Contacts'],
     }),
 
     deleteContact: builder.mutation({
@@ -24,6 +25,7 @@ export const contactsApi = createApi({
         url: `contacts/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Contacts'],
     }),
   }),
 });
