@@ -4,7 +4,7 @@ import { filterReducer } from './filter/filterSlice';
 import { contactsApi } from './contacts/contactsApi';
 
 export const reducer = combineReducers({
-  contacts: contactReducer,
+  // contacts: contactReducer,
   filter: filterReducer,
   [contactsApi.reducerPath]: contactsApi.reducer,
 });

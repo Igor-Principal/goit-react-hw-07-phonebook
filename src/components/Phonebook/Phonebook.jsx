@@ -3,20 +3,22 @@ import css from './phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'store/contacts/contactSlice';
 import { nanoid } from 'nanoid';
-import { useDeleteContactMutation } from 'store/contacts/contactsApi';
+import { useCreateContactMutation, useDeleteContactMutation, useGetContactsQuery } from 'store/contacts/contactsApi';
 
 const Phonebook = () => {
-  const dispatch = useDispatch();
-  const data = useDeleteContactMutation();
-  console.log(data);
+  // const dispatch = useDispatch();
+ 
 
-  const { contacts } = useSelector(state => state.contacts);
+  // const { contacts } = useSelector(state => state.contacts); 
+  const { contacts } = useGetContactsQuery(); 
+const [addContact, { isLoading }] = useCreateContactMutation();
 
   const [info, setInfo] = useState({ name: '', number: '' });
   const { name, number } = info;
 
   const createContact = data => {
-    dispatch(addContact({ ...data, id: nanoid() }));
+    // dispatch(addContact({ ...data, id: nanoid() }));
+    addContact(data)
   };
 
   const handleChange = ({ target }) => {
