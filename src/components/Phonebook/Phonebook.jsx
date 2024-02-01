@@ -3,19 +3,21 @@ import css from './phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'store/contacts/contactSlice';
 import { nanoid } from 'nanoid';
+import { useDeleteContactMutation } from 'store/contacts/contactsApi';
 
 const Phonebook = () => {
   const dispatch = useDispatch();
+  const data = useDeleteContactMutation();
+  console.log(data);
 
-const { contacts } = useSelector(state => state.contacts);
+  const { contacts } = useSelector(state => state.contacts);
 
   const [info, setInfo] = useState({ name: '', number: '' });
   const { name, number } = info;
 
-  
-   const createContact = data => {
-     dispatch(addContact({ ...data, id: nanoid() }));
-   };
+  const createContact = data => {
+    dispatch(addContact({ ...data, id: nanoid() }));
+  };
 
   const handleChange = ({ target }) => {
     setInfo({
@@ -43,7 +45,6 @@ const { contacts } = useSelector(state => state.contacts);
     });
   };
 
-  
   return (
     <form className={css.form} onSubmit={getInfo}>
       <label className={css.titleSmall} htmlFor="name">
