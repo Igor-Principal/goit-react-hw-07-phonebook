@@ -1,4 +1,4 @@
-import { initialStateContact } from './contacts/initialStateContacts';
+// import { initialStateContact } from './contacts/initialStateContacts';
 import { initialStateFilter } from './filter/initilStateFilter';
 
 export const initialStore = {
