@@ -2,12 +2,13 @@ import css from './app.module.css';
 import Phonebook from './Phonebook/Phonebook';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
+import { useGetContactsQuery } from 'store/contacts/contactsApi';
 // import { useSelector } from 'react-redux';
-import apiHooks from 'store/contacts/contactsApi';
+
 
 export const App = () => {
   // const { contacts } = useSelector(state => state.contacts);
-  const { contacts } = apiHooks.useGetContactsQuery();
+  const { contacts } = useGetContactsQuery();
 
   return (
     <div className={css.wrapper}>
