@@ -1,16 +1,20 @@
 import css from './contacts.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'store/contacts/contactSlice';
+import { useSelector } from 'react-redux';
+import {
+  useDeleteContactMutation,
+  useGetContactsQuery,
+} from 'store/contacts/contactsApi';
 
 const Contacts = () => {
-  const { contacts } = useSelector(state => state.contacts);
+  const { data: contacts } = useGetContactsQuery();
+  const [deleteContact] = useDeleteContactMutation();
+
   const { filter } = useSelector(state => state.filter);
 
-  const dispatch = useDispatch();
-
   const handleClick = e => {
-    dispatch(deleteContact(e.target.id));
+    deleteContact(e.target.id);
   };
+  console.log(deleteContact);
 
   const filtered = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLocaleLowerCase())

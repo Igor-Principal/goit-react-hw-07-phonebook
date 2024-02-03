@@ -1,23 +1,16 @@
 import { useState } from 'react';
 import css from './phonebook.module.css';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { addContact } from 'store/contacts/contactSlice';
-// import { nanoid } from 'nanoid';
 import { useCreateContactMutation, useGetContactsQuery } from 'store/contacts/contactsApi';
 
 const Phonebook = () => {
-  // const dispatch = useDispatch();
  
-
-  // const { contacts } = useSelector(state => state.contacts); 
-  const { contacts } = useGetContactsQuery(); 
+  const { data:contacts } = useGetContactsQuery(); 
 const [addContact] = useCreateContactMutation();
 
   const [info, setInfo] = useState({ name: '', number: '' });
   const { name, number } = info;
 
   const createContact = data => {
-    // dispatch(addContact({ ...data, id: nanoid() }));
     addContact(data)
   };
 
@@ -30,6 +23,7 @@ const [addContact] = useCreateContactMutation();
 
   const getInfo = e => {
     e.preventDefault();
+    console.log(contacts);
     const includeName = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase().trim()
     );

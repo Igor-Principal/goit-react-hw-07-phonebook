@@ -8,7 +8,8 @@ import { useGetContactsQuery } from 'store/contacts/contactsApi';
 
 export const App = () => {
   // const { contacts } = useSelector(state => state.contacts);
-  const { contacts } = useGetContactsQuery();
+  const { data:contacts } = useGetContactsQuery();
+  console.log(contacts);
 
   return (
     <div className={css.wrapper}>
