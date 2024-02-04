@@ -1,3 +1,4 @@
+import Loader from 'components/Loader/Loader';
 import css from './contacts.module.css';
 import { useSelector } from 'react-redux';
 import {
@@ -7,7 +8,8 @@ import {
 
 const Contacts = () => {
   const { data: contacts } = useGetContactsQuery();
-  const [deleteContact] = useDeleteContactMutation();
+  const [deleteContact, { isLoading }] = useDeleteContactMutation();
+  console.log(useDeleteContactMutation);
 
   const { filter } = useSelector(state => state.filter);
 
@@ -35,6 +37,7 @@ const Contacts = () => {
   ));
   return (
     <>
+      {isLoading && <Loader />}
       <ul className={css.list}>{elements}</ul>
     </>
   );

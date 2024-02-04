@@ -1,20 +1,22 @@
 import css from './app.module.css';
-import Phonebook from './Phonebook/Phonebook';
+import Phonebook from './ContactForm/ContactForm';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
 import { useGetContactsQuery } from 'store/contacts/contactsApi';
-// import { useSelector } from 'react-redux';
-
+import Loader from './Loader/Loader';
 
 export const App = () => {
-  // const { contacts } = useSelector(state => state.contacts);
-  const { data:contacts } = useGetContactsQuery();
-  console.log(contacts);
+  const { data: contacts, isLoading } = useGetContactsQuery();
+  console.log(isLoading);
 
   return (
     <div className={css.wrapper}>
       <h1 className={css.title}>Phonebook</h1>
       <Phonebook />
+      {isLoading && <Loader />}
+      {!isLoading && contacts && contacts.length === 0 && (
+        <h2 className={css.titleEmpty}>The contact list is empty</h2>
+      )}
       {contacts?.length > 0 && (
         <>
           <h2 className={css.title}>Contacts</h2>
